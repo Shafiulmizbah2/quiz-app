@@ -1,13 +1,46 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { store } from "./store";
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import reportWebVitals from "./reportWebVitals";
+import "./index.css";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { teal, blueGrey } from "@mui/material/colors";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+let persistor = persistStore(store);
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: teal[500],
+    },
+    secondary: {
+      main: blueGrey[500],
+    },
+    common: {
+      white: "#f9f9f9",
+    },
+  },
+});
+
+const container = document.getElementById("root");
+const root = createRoot(container);
+
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <PersistGate loading={null} persistor={persistor}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </PersistGate>
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>
 );
 
