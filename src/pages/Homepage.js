@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../store/authSlice";
 
 const Container = styled(Box)(({ theme }) => ({
-  height: "100vh",
-  width: "100vw",
+  height: "90vh",
+  width: "100%",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -30,6 +30,22 @@ const Homepage = () => {
     if (user !== null) navigate("/categories");
   }, []);
 
+  useEffect(() => {
+    const keyDownHandler = (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+
+        onExplore();
+      }
+    };
+
+    document.addEventListener("keydown", keyDownHandler);
+
+    return () => {
+      document.removeEventListener("keydown", keyDownHandler);
+    };
+  }, []);
+
   return (
     <Container>
       <Typography variant="h5" textTransform="uppercase" color="primary" mb={1}>
@@ -47,7 +63,7 @@ const Homepage = () => {
         variant="contained"
         sx={{ boxShadow: 7 }}
         size="large"
-        onClick={onExplore}
+        onClick={(e) => onExplore(e)}
       >
         Explore Quizes
       </Button>
