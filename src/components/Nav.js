@@ -30,11 +30,15 @@ const Nav = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Quiz
           </Typography>
-          <Button color="inherit" onClick={() => navigate("/")}>
-            Home
-          </Button>
+
           {user !== null && (
             <>
+              <Button color="inherit" onClick={() => navigate("/home")}>
+                Home
+              </Button>
+              <Button color="inherit" onClick={() => navigate("/result")}>
+                Result
+              </Button>
               <Button color="inherit" onClick={() => dispatch(logout())}>
                 Log out
               </Button>

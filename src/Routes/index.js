@@ -1,22 +1,23 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Routes, Route, Navigate } from "react-router-dom";
-import Categories from "../pages/Categories";
 import Homepage from "../pages/Homepage";
+import Welcome from "../pages/Welcome";
 import PageNotFound from "../pages/PageNotFound";
+import QuizPage from "../pages/QuizPage";
 import Result from "../pages/Result";
 import ProtectedRoute from "./ProtectedRoutes";
 
 export default () => {
   return (
     <Routes>
-      <Route path="/" element={<Homepage />} />
+      <Route path="/" element={<Welcome />} />
       {/* <ProtectedRoute path="/categories" Element={<Categories />} /> */}
       <Route
-        path="/categories"
+        path="/home"
         element={
           <ProtectedRoute>
-            <Categories />
+            <Homepage />
           </ProtectedRoute>
         }
       />
@@ -25,6 +26,15 @@ export default () => {
         element={
           <ProtectedRoute>
             <Result />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/quiz"
+        element={
+          <ProtectedRoute>
+            <QuizPage />
           </ProtectedRoute>
         }
       />

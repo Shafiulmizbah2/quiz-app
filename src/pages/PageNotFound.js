@@ -10,7 +10,7 @@ const Container = styled(Box)(({ theme }) => ({
   alignItems: "center",
   justifyContent: "flex-end",
   backgroundColor: theme.palette.white,
-  backgroundImage: `url(./404.webp)`,
+  backgroundImage: `url(./images/404.webp)`,
   backgroundRepeat: "no-repeat",
   backgroundPosition: "center",
 }));
