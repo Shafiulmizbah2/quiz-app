@@ -1,15 +1,13 @@
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Container,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getAllQuizes, getCategories, setSelected } from "../store/quizSlice";
+import {
+  getAllQuizes,
+  getCategories,
+  removeAllQuiz,
+  setSelected,
+} from "../store/quizSlice";
 import { useNavigate } from "react-router-dom";
 import SelectField from "../components/SelectField";
 import CusTextField from "../components/CusTextField";
@@ -25,7 +23,7 @@ const typeOptions = [
   { id: "boolean", name: "True/False" },
 ];
 
-const Categories = () => {
+const Homepage = () => {
   const [formValue, setFormValue] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -44,6 +42,7 @@ const Categories = () => {
       formValue.difficulty ? formValue.difficulty : "easy"
     }&type=${formValue.type ? formValue.type : "multiple"}`;
 
+    dispatch(removeAllQuiz());
     dispatch(setSelected());
     dispatch(getAllQuizes(url));
     navigate("/quiz");
@@ -170,4 +169,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default Homepage;

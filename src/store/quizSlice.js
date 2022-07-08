@@ -82,6 +82,9 @@ const quizSlice = createSlice({
     removeStatistics: (state) => {
       state.statistics = [];
     },
+    removeAllQuiz: (state) => {
+      state.allQuiz = [];
+    },
     setLoading: (state, { payload }) => {
       state.loading[payload.type] = payload.value;
     },
@@ -99,6 +102,7 @@ export const {
   setSelected,
   setStatistics,
   removeStatistics,
+  removeAllQuiz,
   setError,
   setLoading,
 } = quizSlice.actions;

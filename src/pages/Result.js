@@ -1,13 +1,6 @@
 import React from "react";
-import {
-  Box,
-  Button,
-  Container,
-  Divider,
-  styled,
-  Typography,
-} from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Box, Container, Divider, styled, Typography } from "@mui/material";
+import { useLocation } from "react-router-dom";
 import { teal } from "@mui/material/colors";
 import { useSelector } from "react-redux";
 
@@ -40,7 +33,7 @@ const Result = () => {
             </Typography>
           ) : (
             <Typography variant="h3" color="whitesmoke">
-              "Your Score lists"
+              Your Score lists
             </Typography>
           )}
         </Container>

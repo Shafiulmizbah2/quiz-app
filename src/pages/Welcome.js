@@ -4,8 +4,11 @@ import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../store/authSlice";
-import { removeStatistics, setSelected } from "../store/quizSlice";
-import storage from "redux-persist/lib/storage";
+import {
+  removeAllQuiz,
+  removeStatistics,
+  setSelected,
+} from "../store/quizSlice";
 
 const Container = styled(Box)(({ theme }) => ({
   height: "90vh",
@@ -17,7 +20,7 @@ const Container = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.white,
 }));
 
-const Homepage = () => {
+const Welcome = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
@@ -30,11 +33,12 @@ const Homepage = () => {
 
   useEffect(() => {
     if (user !== null) navigate("/home");
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     if (user === null) {
       dispatch(removeStatistics());
+      dispatch(removeAllQuiz());
       dispatch(setSelected());
     }
   }, [user]);
@@ -64,4 +68,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default Welcome;
